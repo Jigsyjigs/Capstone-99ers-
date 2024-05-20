@@ -1,0 +1,142 @@
+Homescreen As screen:
+    Fill: =RGBA(234, 234, 234, 1)
+    LoadingSpinnerColor: =RGBA(164, 38, 44, 1)
+
+    Rectangle10 As rectangle:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Fill: =RGBA(255, 215, 0, 1)
+        Width: =640
+        ZIndex: =1
+
+    Rectangle11 As rectangle:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Fill: =RGBA(128, 0, 0, 1)
+        Width: =640
+        Y: =23
+        ZIndex: =2
+
+    Label13 As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Bold
+        Height: =70
+        Size: =23
+        Text: ="CIT-U ECE Laboratory Management System"
+        Width: =640
+        Y: =40
+        ZIndex: =3
+
+    Rectangle12 As rectangle:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Fill: =RGBA(255, 215, 0, 0.26)
+        Height: =1013
+        Width: =640
+        Y: =123
+        ZIndex: =4
+
+    Button3 As button:
+        BorderThickness: =0
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(255, 215, 0, 1)
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Semibold
+        Height: =298
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =
+        OnSelect: =Navigate('Borrower slip')
+        PaddingBottom: =10
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Size: =24
+        Text: |-
+            ="Borrower's
+            Slip"
+        Width: =240
+        X: =52
+        Y: =289
+        ZIndex: =5
+
+    Button4 As button:
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(128, 0, 0, 1)
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Semibold
+        Height: =269
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =
+        OnSelect: =Navigate(List); Refresh('TDE Laboratory Inventory');
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Size: =24
+        Text: |-
+            ="View
+            Materials
+            and
+            Equipment"
+        Width: =240
+        X: =52
+        Y: =611
+        ZIndex: =6
+
+    Button6 As button:
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(128, 0, 0, 1)
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Semibold
+        Height: =250
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =
+        OnSelect: =Navigate(ExpMan); Refresh(ExperimentManual);
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Size: =24
+        Text: |-
+            ="Experiment
+            Manuals"
+        Width: =283
+        X: =304
+        Y: =289
+        ZIndex: =8
+
+    Button7 As button:
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(255, 215, 0, 1)
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Semibold
+        Height: =315
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =
+        OnSelect: =Navigate(History)
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Size: =24
+        Text: |-
+            ="History
+            of 
+            Activities"
+        Width: =281
+        X: =306
+        Y: =565
+        ZIndex: =9
+

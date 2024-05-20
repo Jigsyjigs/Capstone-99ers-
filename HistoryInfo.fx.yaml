@@ -1,8 +1,8 @@
-ReturnInfo As screen:
+HistoryInfo As screen:
     Fill: =RGBA(234, 234, 234, 1)
     LoadingSpinnerColor: =RGBA(164, 38, 44, 1)
 
-    gold_7 As label:
+    gold_4 As label:
         BorderColor: =RGBA(89, 0, 0, 1)
         Color: =RGBA(0, 0, 0, 1)
         DisabledColor: =RGBA(166, 166, 166, 1)
@@ -13,7 +13,7 @@ ReturnInfo As screen:
         Width: =640
         ZIndex: =1
 
-    maroon_7 As label:
+    maroon_4 As label:
         BorderColor: =RGBA(89, 0, 0, 1)
         Color: =RGBA(0, 0, 0, 1)
         DisabledColor: =RGBA(166, 166, 166, 1)
@@ -25,78 +25,30 @@ ReturnInfo As screen:
         Y: =20
         ZIndex: =2
 
-    Arrow1_8 As arrow.backArrow:
+    Arrow1_5 As arrow.backArrow:
         BorderColor: =RGBA(0, 18, 107, 1)
         DisabledBorderColor: =RGBA(166, 166, 166, 1)
         Fill: =RGBA(255, 255, 255, 1)
         Height: =45
-        OnSelect: =Navigate(HistoryReturn);
+        OnSelect: =Navigate(HistoryBorrow);
         Width: =45
         X: =16
         Y: =32
         ZIndex: =3
 
-    Label2 As label:
+    Label1 As label:
         BorderThickness: =1
         Color: =RGBA(0, 0, 0, 1)
         DisabledColor: =RGBA(166, 166, 166, 1)
         Height: =70
         Size: =21
-        Text: =Text(varReturn.Title)
-        Width: =560
-        X: =40
-        Y: =168
+        Text: =Text(varHistory.Title)
+        Width: =550
+        X: =45
+        Y: =164
         ZIndex: =4
 
-    Label2_9 As label:
-        BorderThickness: =1
-        Color: =RGBA(0, 0, 0, 1)
-        DisabledColor: =RGBA(166, 166, 166, 1)
-        Height: =70
-        Size: =21
-        Text: =Text(varReturn.ReturnEmail)
-        Width: =560
-        X: =40
-        Y: =337
-        ZIndex: =5
-
-    Label2_10 As label:
-        BorderThickness: =1
-        Color: =RGBA(0, 0, 0, 1)
-        DisabledColor: =RGBA(166, 166, 166, 1)
-        Height: =70
-        Size: =21
-        Text: =Text(varReturn.ItemReturned)
-        Width: =560
-        X: =40
-        Y: =495
-        ZIndex: =6
-
-    Label2_11 As label:
-        BorderThickness: =1
-        Color: =RGBA(0, 0, 0, 1)
-        DisabledColor: =RGBA(166, 166, 166, 1)
-        Height: =70
-        Size: =21
-        Text: =Text(varReturn.ItemReturnedTitle)
-        Width: =560
-        X: =40
-        Y: =655
-        ZIndex: =7
-
-    Label2_12 As label:
-        BorderThickness: =1
-        Color: =RGBA(0, 0, 0, 1)
-        DisabledColor: =RGBA(166, 166, 166, 1)
-        Height: =70
-        Size: =21
-        Text: =Text(varReturn.DateReturned)
-        Width: =560
-        X: =40
-        Y: =812
-        ZIndex: =8
-
-    Label1_14 As label:
+    Label1_1 As label:
         Align: =Align.Center
         BorderColor: =RGBA(89, 0, 0, 1)
         Color: =RGBA(0, 0, 0, 1)
@@ -108,57 +60,155 @@ ReturnInfo As screen:
         Width: =550
         X: =45
         Y: =90
+        ZIndex: =5
+
+    Label1_2 As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =70
+        Size: =21
+        Text: ="Item borrowed"
+        Width: =550
+        X: =45
+        Y: =234
+        ZIndex: =6
+
+    Label1_3 As label:
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =70
+        Size: =21
+        Text: =Text(varHistory.ItemBorrowedTitle)
+        Width: =550
+        X: =45
+        Y: =304
+        ZIndex: =7
+
+    Label1_4 As label:
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =70
+        Size: =21
+        Text: =Text(varHistory.BorrowEmail)
+        Width: =550
+        X: =45
+        Y: =444
+        ZIndex: =8
+
+    Label1_5 As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =70
+        Size: =21
+        Text: ="Borrower Email"
+        Width: =550
+        X: =45
+        Y: =374
         ZIndex: =9
 
-    Label1_15 As label:
+    Label1_6 As label:
         Align: =Align.Center
         BorderColor: =RGBA(89, 0, 0, 1)
         Color: =RGBA(0, 0, 0, 1)
         DisabledColor: =RGBA(166, 166, 166, 1)
         Height: =70
         Size: =21
-        Text: ="Email"
+        Text: ="Date Borrowed"
         Width: =550
-        X: =40
-        Y: =251
+        X: =45
+        Y: =514
         ZIndex: =10
 
-    Label1_16 As label:
-        Align: =Align.Center
-        BorderColor: =RGBA(89, 0, 0, 1)
+    Label1_7 As label:
+        BorderThickness: =1
         Color: =RGBA(0, 0, 0, 1)
         DisabledColor: =RGBA(166, 166, 166, 1)
         Height: =70
         Size: =21
-        Text: ="Barcode ID"
+        Text: =Text(varHistory.DateBorrowed)
         Width: =550
-        X: =40
-        Y: =416
+        X: =45
+        Y: =584
         ZIndex: =11
 
-    Label1_17 As label:
+    Label1_8 As label:
         Align: =Align.Center
         BorderColor: =RGBA(89, 0, 0, 1)
         Color: =RGBA(0, 0, 0, 1)
         DisabledColor: =RGBA(166, 166, 166, 1)
         Height: =70
         Size: =21
-        Text: ="Item Name"
+        Text: ="Course and Year"
         Width: =550
-        X: =40
-        Y: =575
+        X: =45
+        Y: =654
         ZIndex: =12
 
-    Label1_18 As label:
+    Label1_9 As label:
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =70
+        Size: =21
+        Text: =Text(varHistory.CourseNYear)
+        Width: =550
+        X: =45
+        Y: =724
+        ZIndex: =13
+
+    Label1_10 As label:
         Align: =Align.Center
         BorderColor: =RGBA(89, 0, 0, 1)
         Color: =RGBA(0, 0, 0, 1)
         DisabledColor: =RGBA(166, 166, 166, 1)
         Height: =70
         Size: =21
-        Text: ="Date Returned"
+        Text: ="Subject and Section"
         Width: =550
-        X: =40
-        Y: =733
-        ZIndex: =13
+        X: =45
+        Y: =794
+        ZIndex: =14
+
+    Label1_11 As label:
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =70
+        Size: =21
+        Text: =Text(varHistory.SubNSec)
+        Width: =550
+        X: =45
+        Y: =864
+        ZIndex: =15
+
+    Label1_12 As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =70
+        Size: =21
+        Text: ="Instructor"
+        Width: =550
+        X: =45
+        Y: =934
+        ZIndex: =16
+
+    Label1_13 As label:
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =70
+        Size: =21
+        Text: =Text(varHistory.Instructor)
+        Width: =550
+        X: =45
+        Y: =1004
+        ZIndex: =17
 

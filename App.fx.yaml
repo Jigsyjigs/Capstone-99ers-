@@ -1,5 +1,11 @@
 App As appinfo:
     BackEnabled: =true
+    OnStart: |
+        =//CIT color theme
+        Set(PrimaryColor, RGBA(128, 0, 0, 1));
+        Set(PrimaryColorText, RGBA(255, 255, 255, 1));
+        Set(SecondaryColor, RGBA(248, 196, 0, 1));
+        Set(SecondaryColorText, RGBA(0, 0, 0, 1));
     Theme: =PowerAppsTheme
 
     Host As hostControl.DefaultHostControlVariant:

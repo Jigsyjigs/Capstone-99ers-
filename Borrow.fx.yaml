@@ -1,130 +1,441 @@
 Borrow As screen:
+    Fill: =RGBA(234, 234, 234, 1)
+    LoadingSpinnerColor: =RGBA(164, 38, 44, 1)
 
-    Header_9 As group:
-        Height: =5
-        Width: =5
-        X: =40
-        Y: =40
+    gold_2 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(255, 215, 0, 1)
+        Height: =70
+        Size: =21
+        Text: =""
+        Width: =640
+        ZIndex: =1
+
+    maroon_2 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(128, 0, 0, 1)
+        Height: =70
+        Size: =21
+        Text: =""
+        Width: =640
+        Y: =20
+        ZIndex: =2
+
+    Dropdown1 As dropdown:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        ChevronBackground: =RGBA(164, 38, 44, 1)
+        ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+        ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+        ChevronHoverBackground: =ColorFade(RGBA(164, 38, 44, 1), -20%)
+        ChevronHoverFill: =RGBA(255, 255, 255, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Height: =43
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(222, 179, 184, 1)
+        Items: =Sequence(varRecord3.QTY - varRecord3.NumberOnLoan)
+        OnSelect: =
+        PressedColor: =RGBA(255, 255, 255, 1)
+        PressedFill: =RGBA(89, 0, 0, 1)
+        SelectionFill: =RGBA(128, 0, 0, 1)
+        Size: =20
+        Width: =255
+        X: =329
+        Y: =110
         ZIndex: =4
 
-        gold_11 As label:
-            Fill: =RGBA(255, 215, 0, 1)
-            Height: =70
-            Size: =21
-            Text: =""
-            Width: =640
-            ZIndex: =1
-
-        maroon_11 As label:
-            Fill: =RGBA(128, 0, 0, 1)
-            Height: =70
-            Size: =21
-            Text: =""
-            Width: =640
-            Y: =20
-            ZIndex: =2
-
-        Arrow1_14 As arrow.backArrow:
-            Fill: =RGBA(255, 255, 255, 1)
-            Height: =45
-            OnSelect: =Navigate(HistoryofACT);
-            Width: =45
-            X: =16
-            Y: =32
-            ZIndex: =3
-
-    "Gallery2_1 As gallery.'BrowseLayout_Vertical_ThreeTextVariant_ver5.0'":
-        '#CopilotOverlayLabel': ="Filtered"
+    Label2_1 As label:
         BorderColor: =RGBA(89, 0, 0, 1)
-        DelayItemLoading: =true
-        Height: =1046
-        Items: =Sort(InventoryLog,DateBorrowed,SortOrder.Ascending)
-        Layout: =Layout.Vertical
-        LoadingSpinner: =LoadingSpinner.Data
-        TemplatePadding: =0
-        TemplateSize: =116
-        Y: =90
-        ZIndex: =5
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =43
+        Size: =18
+        Text: |-
+            ="QTY to Borrow:"
+        Width: =275
+        X: =54
+        Y: =110
+        ZIndex: =6
 
-        Title1_1 As label:
-            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-            Height: =Self.Size * 1.8
-            OnSelect: =Select(Parent)
-            PaddingBottom: =0
-            PaddingLeft: =0
-            PaddingRight: =0
-            PaddingTop: =0
-            Text: |-
-                ="Name: " & ThisItem.BorrowName
-            VerticalAlign: =VerticalAlign.Top
-            Width: =Parent.TemplateWidth - 86
-            X: =16
-            Y: =(Parent.TemplateHeight - (Self.Size*1.8 + Subtitle1_1.Size*1.8 + 2 + Body1.Size*1.8)) / 2
-            ZIndex: =1
+    Button1 As button:
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: =If(ButtonEnabled, DisplayMode.Edit, DisplayMode.Disabled)
+        Fill: =RGBA(164, 38, 44, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =46
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =ColorFade(RGBA(164, 38, 44, 1), -20%)
+        OnSelect: |+
+            =Patch('TDE Laboratory Inventory',varRecord3,{NumberOnLoan: varRecord3.NumberOnLoan + Dropdown1.Selected.Value});
+            
+            
+            Patch(InventoryLog,Defaults(InventoryLog), {Title: User().FullName, BorrowName: TextInput1.Text, BorrowEmail: User().Email, QTYBorrowed: Dropdown1.Selected.Value, DateBorrowed: Today(), ItemBorrowed: varScan1, ItemBorrowedTitle: varRecord3.Title, CourseNYear: TextInput2.Text, SubNSec: TextInput2_1.Text, Semester: Dropdown2.Selected.Value, Groupmembers: TextInput2_2.Text, Instructor: varQRrecord.Title, LabIncharge: varLabQRrecord.Title});
+            
+            
+            
+            Navigate('Borrower slip');
+            Notify(varRecord3.Title & " has been borrowed", NotificationType.Success);
+            
+            
+        Size: =15
+        Text: ="Borrow"
+        X: =376
+        Y: =1047
+        ZIndex: =7
 
-        Subtitle1_1 As label:
-            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-            Height: =Self.Size * 1.8
-            OnSelect: =Select(Parent)
-            PaddingBottom: =0
-            PaddingLeft: =0
-            PaddingRight: =0
-            PaddingTop: =0
-            Text: |-
-                ="Borrowed item:" & ThisItem.ItemBorrowedTitle
-            VerticalAlign: =VerticalAlign.Top
-            Width: =Title1_1.Width
-            X: =Title1_1.X
-            Y: =Title1_1.Y + Title1_1.Height
-            ZIndex: =2
+    Arrow1_1 As arrow.backArrow:
+        BorderColor: =RGBA(0, 18, 107, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =45
+        OnSelect: =Navigate('Borrower slip'); Set(varRecord2,Blank()); Reset(Dropdown1);
+        Width: =45
+        X: =16
+        Y: =32
+        ZIndex: =8
 
-        Body1 As label:
-            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-            Height: =Self.Size * 1.8
-            OnSelect: =Select(Parent)
-            PaddingBottom: =0
-            PaddingLeft: =0
-            PaddingRight: =0
-            PaddingTop: =0
-            Text: |-
-                ="Course and year: " & ThisItem.CourseNYear
-            VerticalAlign: =VerticalAlign.Top
-            Width: =Title1_1.Width
-            X: =Title1_1.X
-            Y: =Subtitle1_1.Y + Subtitle1_1.Height
-            ZIndex: =3
+    TextInput1 As text:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =""
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        FocusedBorderThickness: =4
+        Height: =45
+        HoverBorderColor: =RGBA(89, 0, 0, 1)
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(222, 179, 184, 1)
+        Size: =15
+        Width: =255
+        X: =329
+        Y: =189
+        ZIndex: =9
 
-        NextArrow1_1 As icon.ChevronRight:
-            AccessibleLabel: =Self.Tooltip
-            BorderColor: =RGBA(89, 0, 0, 1)
-            Color: =RGBA(0, 0, 0, 1)
-            Height: =50
-            Icon: =Icon.ChevronRight
-            OnSelect: =Set(varHistory,ThisItem); Set(ButtonEnabled,false); Navigate(BorrowInfo)
-            PaddingBottom: =16
-            PaddingLeft: =16
-            PaddingRight: =16
-            PaddingTop: =16
-            Tooltip: ="View item details"
-            Width: =50
-            X: =Parent.TemplateWidth - Self.Width - 12
-            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
-            ZIndex: =4
+    Label2_2 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =45
+        Size: =18
+        Text: |-
+            ="Name:
+            "
+        Width: =275
+        X: =54
+        Y: =189
+        ZIndex: =10
 
-        Separator1_1 As rectangle:
-            BorderColor: =RGBA(89, 0, 0, 1)
-            Height: =8
-            OnSelect: =Select(Parent)
-            Width: =Parent.TemplateWidth
-            Y: =Parent.TemplateHeight - Self.Height
-            ZIndex: =5
+    TextInput2 As text:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =""
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        FocusedBorderThickness: =4
+        Height: =45
+        HoverBorderColor: =RGBA(89, 0, 0, 1)
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(222, 179, 184, 1)
+        Size: =15
+        Width: =255
+        X: =329
+        Y: =267
+        ZIndex: =11
 
-        Rectangle1_1 As rectangle:
-            BorderColor: =RGBA(89, 0, 0, 1)
-            Fill: =RGBA(89, 0, 0, 1)
-            Height: =Parent.TemplateHeight - Separator1_1.Height
-            OnSelect: =Select(Parent)
-            Visible: =ThisItem.IsSelected
-            Width: =4
-            ZIndex: =6
+    Label2_3 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =45
+        Size: =18
+        Text: |-
+            ="Course&Year:"
+        Width: =275
+        X: =54
+        Y: =267
+        ZIndex: =12
+
+    TextInput2_1 As text:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =""
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        FocusedBorderThickness: =4
+        Height: =45
+        HoverBorderColor: =RGBA(89, 0, 0, 1)
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(222, 179, 184, 1)
+        Size: =15
+        Width: =255
+        X: =329
+        Y: =344
+        ZIndex: =13
+
+    Label2_4 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =45
+        Size: =18
+        Text: |-
+            ="Sub&Sec:"
+        Width: =275
+        X: =54
+        Y: =344
+        ZIndex: =14
+
+    Label2_5 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =45
+        Size: =18
+        Text: |-
+            ="Sem:"
+        Width: =275
+        X: =54
+        Y: =415
+        ZIndex: =15
+
+    Label2_6 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =45
+        Size: =18
+        Text: |-
+            ="Prof:"
+        Width: =275
+        X: =54
+        Y: =486
+        ZIndex: =16
+
+    Dropdown2 As dropdown:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        ChevronBackground: =RGBA(164, 38, 44, 1)
+        ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+        ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+        ChevronHoverBackground: =ColorFade(RGBA(164, 38, 44, 1), -20%)
+        ChevronHoverFill: =RGBA(255, 255, 255, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Height: =43
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(222, 179, 184, 1)
+        Items: =["First semester", "Second Semester", "Mid Year"]
+        PressedColor: =RGBA(255, 255, 255, 1)
+        PressedFill: =RGBA(89, 0, 0, 1)
+        SelectionFill: =RGBA(164, 38, 44, 1)
+        Size: =15
+        Width: =255
+        X: =329
+        Y: =415
+        ZIndex: =17
+
+    Confirm As button:
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(164, 38, 44, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =46
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =ColorFade(RGBA(164, 38, 44, 1), -20%)
+        OnSelect: |
+            =Set(ButtonEnabled, true)
+        Size: =15
+        Text: ="Confirm"
+        Width: =163
+        X: =110
+        Y: =1047
+        ZIndex: =20
+
+    Label2_7 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =45
+        Size: =18
+        Text: |-
+            ="Barcode ID:"
+        Width: =275
+        X: =54
+        Y: =546
+        ZIndex: =21
+
+    Label2_8 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =45
+        Size: =18
+        Text: =Text(varRecord3.BarcodeID)
+        Width: =255
+        X: =329
+        Y: =546
+        ZIndex: =22
+
+    Label3 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =45
+        Size: =18
+        Text: =Text(varQRrecord.Title)
+        Width: =255
+        X: =328
+        Y: =486
+        ZIndex: =23
+
+    "InstructorQRcode As 'Barcode Reader'":
+        BorderFillColor: =RGBA(47, 81, 151, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledContentColor: =RGBA(166, 166, 166, 1)
+        DisabledFillColor: =RGBA(244, 244, 244, 1)
+        DisplayMode: =DisplayMode.Edit
+        FillColor: =RGBA(56, 96, 178, 1)
+        Height: =43
+        HoverBorderColor: =RGBA(88, 115, 171, 1)
+        HoverContentColor: =RGBA(255, 255, 255, 1)
+        HoverFillColor: =RGBA(47, 81, 151, 1)
+        OnCancel: =false
+        OnScan: |-
+            =Set(varQRScan, First(Self.Barcodes).Value);
+            Set(varQRrecord, LookUp(InstructorQR, QR = varQRScan));
+        PressedBorderColor: =RGBA(56, 96, 178, 1)
+        PressedContentColor: =RGBA(56, 96, 178, 1)
+        PressedFillColor: =RGBA(255, 255, 255, 1)
+        Text: ="QR"
+        TextColor: =RGBA(255, 255, 255, 1)
+        Width: =48
+        X: =141
+        Y: =486
+        ZIndex: =24
+
+    Label2_13 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =45
+        Size: =18
+        Text: |-
+            ="Item Borrowed:"
+        Width: =275
+        X: =53
+        Y: =602
+        ZIndex: =25
+
+    Label2_14 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =45
+        Size: =18
+        Text: =Text(varRecord3.Title)
+        Width: =256
+        X: =328
+        Y: =602
+        ZIndex: =26
+
+    Label2_15 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =45
+        Size: =18
+        Text: |-
+            ="Group members:"
+        Width: =275
+        X: =54
+        Y: =723
+        ZIndex: =27
+
+    TextInput2_2 As text:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =""
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        FocusedBorderThickness: =4
+        Height: =157
+        HoverBorderColor: =RGBA(89, 0, 0, 1)
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(222, 179, 184, 1)
+        Mode: =TextMode.MultiLine
+        Size: =15
+        Width: =255
+        X: =329
+        Y: =723
+        ZIndex: =28
+
+    Label3_1 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =45
+        Size: =18
+        Text: =Text(varLabQRrecord.Title)
+        Width: =255
+        X: =329
+        Y: =657
+        ZIndex: =29
+
+    Label2_16 As label:
+        BorderColor: =RGBA(89, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =45
+        Size: =18
+        Text: |-
+            ="Lab Incharge:"
+        Width: =275
+        X: =53
+        Y: =656
+        ZIndex: =30
+
+    "LabQRcode As 'Barcode Reader'":
+        BorderFillColor: =RGBA(47, 81, 151, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledContentColor: =RGBA(166, 166, 166, 1)
+        DisabledFillColor: =RGBA(244, 244, 244, 1)
+        DisplayMode: =DisplayMode.Edit
+        FillColor: =RGBA(56, 96, 178, 1)
+        Height: =43
+        HoverBorderColor: =RGBA(88, 115, 171, 1)
+        HoverContentColor: =RGBA(255, 255, 255, 1)
+        HoverFillColor: =RGBA(47, 81, 151, 1)
+        OnCancel: =false
+        OnScan: |-
+            =Set(varLabQR, First(Self.Barcodes).Value);
+            Set(varLabQRrecord, LookUp(LabQR, QR = varLabQR));
+        PressedBorderColor: =RGBA(56, 96, 178, 1)
+        PressedContentColor: =RGBA(56, 96, 178, 1)
+        PressedFillColor: =RGBA(255, 255, 255, 1)
+        Text: ="QR"
+        TextColor: =RGBA(255, 255, 255, 1)
+        Width: =48
+        X: =235
+        Y: =658
+        ZIndex: =31
 
