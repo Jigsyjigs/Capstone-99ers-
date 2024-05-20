@@ -1,0 +1,65 @@
+AddExp As screen:
+
+    AttachControl As attachments:
+        BorderColor: =Color.Black
+        Height: =170
+        IsInDataCard: =true
+        Items: =
+        OnAddFile: |-
+            =DocumentUpload.Run({file:{contentBytes:Last(Self.Attachments).Value, name:Last(Self.Attachments).Name}})
+        PaddingBottom: =5
+        PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+        PaddingRight: =5
+        PaddingTop: =5
+        Size: =21
+        Tooltip: =
+        Width: =Parent.Width - 60
+        X: =30
+        Y: =106
+        ZIndex: =4
+
+    Header_4 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =4
+
+        gold_6 As label:
+            Fill: =RGBA(255, 215, 0, 1)
+            Height: =70
+            Size: =21
+            Text: =""
+            Width: =640
+            ZIndex: =1
+
+        maroon_6 As label:
+            Fill: =RGBA(128, 0, 0, 1)
+            Height: =70
+            Size: =21
+            Text: =""
+            Width: =640
+            Y: =20
+            ZIndex: =2
+
+        Arrow1_9 As arrow.backArrow:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =45
+            OnSelect: =Navigate(ExpeMan); Refresh(ExperimentManual); Reset(AttachControl);
+            Width: =45
+            X: =16
+            Y: =32
+            ZIndex: =3
+
+    Button7 As button:
+        Height: =70
+        OnSelect: =Navigate(ExpeMan); Refresh(ExperimentManual); Reset(AttachControl);
+        Size: =24
+        Text: |-
+            ="Upload
+            "
+        Width: =280
+        X: =180
+        Y: =380
+        ZIndex: =5
+

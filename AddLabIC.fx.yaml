@@ -1,0 +1,148 @@
+AddLabIC As screen:
+
+    Label8_3 As label:
+        Align: =Align.Center
+        Height: =70
+        Size: =21
+        Text: ="Lab Incharge name"
+        Width: =560
+        X: =40
+        Y: =108
+        ZIndex: =4
+
+    Header_6 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =4
+
+        gold_8 As label:
+            Fill: =RGBA(255, 215, 0, 1)
+            Height: =70
+            Size: =21
+            Text: =""
+            Width: =640
+            ZIndex: =1
+
+        maroon_8 As label:
+            Fill: =RGBA(128, 0, 0, 1)
+            Height: =70
+            Size: =21
+            Text: =""
+            Width: =640
+            Y: =20
+            ZIndex: =2
+
+        Arrow1_11 As arrow.backArrow:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =45
+            OnSelect: =Navigate(LabIC);
+            Width: =45
+            X: =16
+            Y: =32
+            ZIndex: =3
+
+    Name_1 As text:
+        Default: =""
+        Height: =70
+        Size: =21
+        Width: =560
+        X: =40
+        Y: =178
+        ZIndex: =5
+
+    Label8_4 As label:
+        Align: =Align.Center
+        Height: =70
+        Size: =21
+        Text: ="QR code"
+        Width: =560
+        X: =40
+        Y: =248
+        ZIndex: =6
+
+    QRcode_1 As text:
+        Default: =varQRScan
+        Height: =70
+        Size: =21
+        Width: =560
+        X: =40
+        Y: =318
+        ZIndex: =7
+
+    Label8_5 As label:
+        Align: =Align.Center
+        Height: =70
+        Size: =21
+        Text: ="Add picture"
+        Width: =560
+        X: =40
+        Y: =458
+        ZIndex: =8
+
+    Pic_1 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =9
+
+        UploadedImage1_1 As image:
+            Height: =AddMediaButton1_1.Height
+            Image: =If(IsBlank(AddMediaButton1_1.Media), SampleImage, AddMediaButton1_1.Media)
+            ImagePosition: =ImagePosition.Fill
+            Width: =AddMediaButton1_1.Width
+            X: =192
+            Y: =528
+            ZIndex: =10
+
+        AddMediaButton1_1 As addMedia:
+            Height: =230
+            Size: =25
+            Width: =256
+            X: =192
+            Y: =528
+            ZIndex: =11
+
+    Submit_1 As button:
+        Height: =70
+        OnSelect: |-
+            =Patch(LabQR,Defaults(LabQR),{Title: Name_1.Text, QR:QRcode_1.Text, Image:UploadedImage1_1.Image});
+            
+            Navigate(LabIC);
+            
+            Reset(AddMediaButton1_1);
+            Reset(Name_1);
+            Reset(QRcode_1);
+        Size: =24
+        Text: ="Submit"
+        Width: =175
+        X: =232
+        Y: =883
+        ZIndex: =12
+
+    "BarcodeReader2_1 As 'Barcode Reader'":
+        BorderFillColor: =RGBA(47, 81, 151, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledContentColor: =RGBA(166, 166, 166, 1)
+        DisabledFillColor: =RGBA(244, 244, 244, 1)
+        DisplayMode: =DisplayMode.Edit
+        FillColor: =RGBA(56, 96, 178, 1)
+        FontSize: =11
+        Height: =61
+        HoverBorderColor: =RGBA(88, 115, 171, 1)
+        HoverContentColor: =RGBA(255, 255, 255, 1)
+        HoverFillColor: =RGBA(47, 81, 151, 1)
+        OnCancel: =false
+        OnScan: =Set(varQRScan, First(Self.Barcodes).Value);
+        PressedBorderColor: =RGBA(56, 96, 178, 1)
+        PressedContentColor: =RGBA(56, 96, 178, 1)
+        PressedFillColor: =RGBA(255, 255, 255, 1)
+        Text: ="Scan"
+        TextColor: =RGBA(255, 255, 255, 1)
+        Width: =62
+        X: =61
+        Y: =397
+        ZIndex: =13
+

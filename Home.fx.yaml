@@ -1,378 +1,114 @@
 Home As screen:
 
-    "Gallery5 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
-        '#CopilotOverlayLabel': ="Filtered"
-        DelayItemLoading: =true
-        DisplayMode: =DisplayMode.View
-        Items: =LabQR
-        Layout: =Layout.Vertical
-        LoadingSpinner: =LoadingSpinner.Data
-        TemplatePadding: =0
-        TemplateSize: =104
-        Visible: =false
-        Y: =491
+    Rectangle10 As rectangle:
+        Fill: =RGBA(255, 215, 0, 1)
+        Width: =640
         ZIndex: =1
 
-        Image5 As image:
-            Height: =72
-            Image: =ThisItem.Image
-            OnSelect: =Select(Parent)
-            RadiusBottomLeft: =8
-            RadiusBottomRight: =8
-            RadiusTopLeft: =8
-            RadiusTopRight: =8
-            Width: =72
-            X: =16
-            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
-            ZIndex: =1
-
-        Title5 As label:
-            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-            Height: =Self.Size * 1.8
-            OnSelect: =Select(Parent)
-            PaddingBottom: =0
-            PaddingLeft: =0
-            PaddingRight: =0
-            PaddingTop: =0
-            Text: =ThisItem.Title
-            VerticalAlign: =VerticalAlign.Top
-            Width: =Parent.TemplateWidth - 173
-            X: =103
-            Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle5.Size * 1.8)) / 2
-            ZIndex: =2
-
-        Subtitle5 As label:
-            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-            Height: =Self.Size * 1.8
-            OnSelect: =Select(Parent)
-            PaddingBottom: =0
-            PaddingLeft: =0
-            PaddingRight: =0
-            PaddingTop: =0
-            Text: =ThisItem.QR
-            VerticalAlign: =VerticalAlign.Top
-            Width: =Title5.Width
-            X: =Title5.X
-            Y: =Title5.Y + Title5.Height
-            ZIndex: =3
-
-        NextArrow4 As icon.ChevronRight:
-            AccessibleLabel: =Self.Tooltip
-            Color: =RGBA(166, 166, 166, 1)
-            Height: =50
-            Icon: =Icon.ChevronRight
-            OnSelect: =Select(Parent)
-            PaddingBottom: =16
-            PaddingLeft: =16
-            PaddingRight: =16
-            PaddingTop: =16
-            Tooltip: ="View item details"
-            Width: =50
-            X: =Parent.TemplateWidth - Self.Width - 12
-            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
-            ZIndex: =4
-
-        Separator4 As rectangle:
-            Height: =8
-            OnSelect: =Select(Parent)
-            Width: =Parent.TemplateWidth
-            Y: =Parent.TemplateHeight - Self.Height
-            ZIndex: =5
-
-        Rectangle4 As rectangle:
-            Height: =Parent.TemplateHeight - Separator4.Height
-            OnSelect: =Select(Parent)
-            Visible: =ThisItem.IsSelected
-            Width: =4
-            ZIndex: =6
-
-    "Expmanlist As gallery.'BrowseLayout_Vertical_TwoTextOneImageTwoColumnVariant_ver5.0'":
-        '#CopilotOverlayLabel': ="Filtered"
-        DelayItemLoading: =true
-        Height: =961
-        Items: =ExperimentManual
-        Layout: =Layout.Vertical
-        LoadingSpinner: =LoadingSpinner.Data
-        TemplatePadding: =0
-        TemplateSize: =Min(416, Self.Height - 60)
-        Visible: =varSetExplist
-        WrapCount: =2
-        Y: =175
+    Rectangle11 As rectangle:
+        Fill: =RGBA(128, 0, 0, 1)
+        Width: =640
+        Y: =23
         ZIndex: =2
-
-        Image7 As image:
-            Height: =Min(Self.Width, Parent.TemplateHeight - 115)
-            Image: |-
-                =If(
-                
-                    
-                // pdf
-                    EndsWith(ThisItem.'File name with extension', "pdf"),
-                    "data:image/svg+xml;utf8, %3Csvg%20%20viewBox%3D%270%200%202048%202048%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cpath%20d%3D%27M1920%201664h-128v384H128v-384H0V640h128V0h1243l421%20421v219h128v1024zM1408%20384h165l-165-165v165zM256%20640h1408V512h-384V128H256v512zm1408%201024H256v256h1408v-256zm128-896H128v768h1664V768zM448%20896q40%200%2075%2015t61%2041%2041%2061%2015%2075q0%2040-15%2075t-41%2061-61%2041-75%2015h-64v128H256V896h192zm0%20256q26%200%2045-19t19-45q0-26-19-45t-45-19h-64v128h64zm448-256q53%200%2099%2020t82%2055%2055%2081%2020%20100q0%2053-20%2099t-55%2082-81%2055-100%2020H768V896h128zm0%20384q27%200%2050-10t40-27%2028-41%2010-50q0-27-10-50t-27-40-41-28-50-10v256zm384-384h320v128h-192v128h192v128h-192v128h-128V896z%27%20fill%3D%27%23a4262c%27%3E%3C%2Fpath%3E%3C%2Fsvg%3E",
-                    // Word 
-                    EndsWith(ThisItem.'File name with extension', "docx"),
-                
-                    "data:image/svg+xml;utf8, %3Csvg%20%20viewBox%3D%270%200%202048%202048%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cpath%20d%3D%27M2048%20475v1445q0%2027-10%2050t-27%2040-41%2028-50%2010H640q-27%200-50-10t-40-27-28-41-10-50v-256H115q-24%200-44-9t-37-25-25-36-9-45V627q0-24%209-44t25-37%2036-25%2045-9h397V128q0-27%2010-50t27-40%2041-28%2050-10h933q26%200%2049%209t42%2028l347%20347q18%2018%2027%2041t10%2050zm-384-256v165h165l-165-165zM320%201424h161q2-8%209-43t18-83%2021-103%2022-101%2016-76%208-31l7%2030q7%2030%2017%2077t23%20100%2023%20103%2019%2084%2010%2043h160l148-672H834l-80%20438-100-438H502l-96%20440-86-440H170l150%20672zm320%20496h1280V512h-256q-27%200-50-10t-40-27-28-41-10-50V128H640v384h397q24%200%2044%209t37%2025%2025%2036%209%2045v922q0%2024-9%2044t-25%2037-36%2025-45%209H640v256zm640-1024V768h512v128h-512zm0%20256v-128h512v128h-512zm0%20256v-128h512v128h-512z%27%20fill%3D%27%230078d4%27%3E%3C%2Fpath%3E%3C%2Fsvg%3E",
-                    
-                    // Excel icon
-                    EndsWith(ThisItem.'File name with extension', "xlsx"),
-                    "data:image/svg+xml;utf8, %3Csvg%20%20viewBox%3D%270%200%202048%202048%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cpath%20d%3D%27M2048%20475v1445q0%2027-10%2050t-27%2040-41%2028-50%2010H640q-27%200-50-10t-40-27-28-41-10-50v-256H115q-24%200-44-9t-37-25-25-36-9-45V627q0-24%209-44t25-37%2036-25%2045-9h397V128q0-27%2010-50t27-40%2041-28%2050-10h933q26%200%2049%209t42%2028l347%20347q18%2018%2027%2041t10%2050zm-384-256v165h165l-165-165zM261%201424h189q2-4%2012-23t25-45%2029-55%2029-53%2023-41%2010-17q27%2059%2060%20118t65%20116h187l-209-339%20205-333H707q-31%2057-60%20114t-63%20112q-29-57-57-113t-57-113H279l199%20335-217%20337zm379%20496h1280V512h-256q-27%200-50-10t-40-27-28-41-10-50V128H640v384h397q24%200%2044%209t37%2025%2025%2036%209%2045v922q0%2024-9%2044t-25%2037-36%2025-45%209H640v256zm640-1024V768h512v128h-512zm0%20256v-128h512v128h-512zm0%20256v-128h512v128h-512z%27%20fill%3D%27%230b6a0b%27%3E%3C%2Fpath%3E%3C%2Fsvg%3E",
-                    
-                    // PowerPoint icon
-                    EndsWith(ThisItem.'File name with extension', "pptx"),
-                    "data:image/svg+xml;utf8, %3Csvg%20%20viewBox%3D%270%200%202048%202048%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cpath%20d%3D%27M2048%20475v1445q0%2027-10%2050t-27%2040-41%2028-50%2010H640q-27%200-50-10t-40-27-28-41-10-50v-256H115q-24%200-44-9t-37-25-25-36-9-45V627q0-24%209-44t25-37%2036-25%2045-9h397V128q0-27%2010-50t27-40%2041-28%2050-10h933q26%200%2049%209t42%2028l347%20347q18%2018%2027%2041t10%2050zm-384-256v165h165l-165-165zM368%20752v672h150v-226h100q52%200%2097-15t78-46%2053-72%2020-97q0-56-17-97t-50-67-76-39-97-13H368zm1552%201168V512h-256q-27%200-50-10t-40-27-28-41-10-50V128H640v384h397q24%200%2044%209t37%2025%2025%2036%209%2045v922q0%2024-9%2044t-25%2037-36%2025-45%209H640v256h1280zM1536%20640q79%200%20149%2030t122%2082%2083%20123%2030%20149h-384V640zm-128%20128v384h384q0%2080-30%20149t-82%20122-123%2083-149%2030q-33%200-65-6t-63-18V792q31-11%2063-17t65-7zm-804%20300h-86V883h90q47%200%2074%2020t27%2070q0%2052-28%2073t-77%2022z%27%20fill%3D%27%23ca5010%27%3E%3C%2Fpath%3E%3C%2Fsvg%3E",
-                    
-                EndsWith(ThisItem.'File name with extension', "Png"),//Pass the link of the image
-                Gallery5.Selected.'Link to item',
-                    // Other filetype ,
-                   "any image to represent the other files"
-                )
-            ImagePosition: =ImagePosition.Fill
-            OnSelect: =Select(Parent); Set(varDocs,ThisItem); Set(varShowPopup,true);
-            RadiusBottomLeft: =8
-            RadiusBottomRight: =8
-            RadiusTopLeft: =8
-            RadiusTopRight: =8
-            Width: =Parent.TemplateWidth - 32
-            X: =16
-            Y: =16
-            ZIndex: =1
-
-        Title6 As label:
-            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-            Height: =Self.Size * 1.8
-            OnSelect: =Select(Parent)
-            PaddingBottom: =0
-            PaddingLeft: =0
-            PaddingRight: =0
-            PaddingTop: =0
-            Text: =ThisItem.Name
-            VerticalAlign: =VerticalAlign.Top
-            Width: =Parent.TemplateWidth - 64
-            X: =32
-            Y: =Image7.Y + Image7.Height + 16
-            ZIndex: =2
-
-        Subtitle6 As label:
-            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-            Height: =Self.Size * 1.8
-            OnSelect: =Select(Parent)
-            PaddingBottom: =0
-            PaddingLeft: =0
-            PaddingRight: =0
-            PaddingTop: =0
-            Text: =ThisItem.Modified
-            VerticalAlign: =VerticalAlign.Top
-            Width: =Title6.Width
-            X: =Title6.X
-            Y: =Title6.Y + Title6.Height + 8
-            ZIndex: =3
-
-    Header As group:
-        Height: =5
-        Width: =5
-        X: =40
-        Y: =40
-        ZIndex: =4
-
-        gold As label:
-            Fill: =RGBA(255, 215, 0, 1)
-            Height: =82
-            Size: =21
-            Text: =""
-            Width: =640
-            ZIndex: =3
-
-        maroon As label:
-            Fill: =RGBA(128, 0, 0, 1)
-            Height: =82
-            Size: =21
-            Text: =""
-            Width: =640
-            Y: =23
-            ZIndex: =4
 
     Label13 As label:
         Align: =Align.Center
         Color: =RGBA(255, 255, 255, 1)
         Font: =Font.Lato
         FontWeight: =FontWeight.Bold
-        Height: =105
+        Height: =133
         Size: =23
         Text: |-
             ="CIT-U ECE Laboratory Management System
-            for Instructor"
+            for Laboratory in charge"
         Width: =640
-        Y: =11
+        ZIndex: =3
+
+    Button1 As button:
+        BorderThickness: =0
+        Color: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(255, 215, 0, 1)
+        Height: =238
+        OnSelect: =Navigate(InventoryL); Refresh('TDE Laboratory Inventory');
+        PaddingBottom: =1
+        PaddingLeft: =1
+        PaddingRight: =1
+        PaddingTop: =1
+        Size: =24
+        Text: ="Inventory"
+        Width: =203
+        X: =117
+        Y: =268
+        ZIndex: =4
+
+    Button1_1 As button:
+        Fill: =RGBA(128, 0, 0, 1)
+        Height: =140
+        OnSelect: =Navigate(Instructors); Refresh(InstructorQR);
+        PaddingBottom: =1
+        PaddingLeft: =1
+        PaddingRight: =1
+        PaddingTop: =1
+        Size: =24
+        Text: ="Instructors"
+        Width: =203
+        X: =331
+        Y: =268
         ZIndex: =5
 
-    SetExp As button:
-        BorderThickness: =1
-        Height: =70
-        OnSelect: =Set(varSetExper,true); Set(varSetExplist,false); Refresh(ClassSched); Refresh(InstructorQR);
-        RadiusBottomLeft: =1
-        RadiusBottomRight: =1
-        RadiusTopLeft: =1
-        RadiusTopRight: =1
+    Button5 As button:
+        BorderThickness: =0
+        Fill: =RGBA(128, 0, 0, 1)
+        Height: =270
+        OnSelect: =Navigate(Explist); Refresh(Notifications);
         Size: =24
-        Text: ="Set experiment"
-        Width: =320
-        Y: =105
+        Text: ="Experiment to do"
+        Width: =203
+        X: =117
+        Y: =519
         ZIndex: =6
 
-    EXPman As button:
-        BorderThickness: =1
-        Height: =70
-        OnSelect: =Set(varSetExper,false); Set(varSetExplist,true); Refresh(ExperimentManual);
-        RadiusBottomLeft: =1
-        RadiusBottomRight: =1
-        RadiusTopLeft: =1
-        RadiusTopRight: =1
+    Button5_1 As button:
+        BorderThickness: =0
+        Color: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(255, 215, 0, 1)
+        Height: =239
+        OnSelect: =Navigate(ExpeMan); Refresh(ExperimentManual);
+        PaddingBottom: =1
+        PaddingLeft: =1
+        PaddingRight: =1
+        PaddingTop: =1
         Size: =24
-        Text: ="Experiment manual"
-        Width: =320
-        X: =320
-        Y: =105
+        Text: ="Experiment Manual"
+        Width: =203
+        X: =331
+        Y: =420
         ZIndex: =7
 
-    SetExper As group:
-        Height: =5
-        Width: =5
-        X: =40
-        Y: =40
-        ZIndex: =14
+    Button1_2 As button:
+        BorderThickness: =0
+        Fill: =RGBA(128, 0, 0, 1)
+        Height: =270
+        OnSelect: =Navigate(LabIC); Refresh(LabQR);
+        Size: =24
+        Text: ="Laboratory Incharge"
+        Width: =203
+        X: =331
+        Y: =672
+        ZIndex: =8
 
-        Label1 As label:
-            Align: =Align.Center
-            Height: =70
-            Size: =21
-            Text: ="Subject Code & Time"
-            Visible: =varSetExper
-            Width: =560
-            X: =36
-            Y: =214
-            ZIndex: =8
-
-        Label1_1 As label:
-            Align: =Align.Center
-            Height: =65
-            Size: =21
-            Text: ="Instructor"
-            Visible: =varSetExper
-            Width: =560
-            X: =36
-            Y: =354
-            ZIndex: =9
-
-        ExpNum As text:
-            Default: =""
-            Format: =TextFormat.Number
-            Height: =70
-            Size: =21
-            Visible: =varSetExper
-            Width: =560
-            X: =36
-            Y: =559
-            ZIndex: =10
-
-        Label1_2 As label:
-            Align: =Align.Center
-            Height: =68
-            Size: =21
-            Text: |-
-                ="Experiment Number
-                "
-            Visible: =varSetExper
-            Width: =560
-            X: =36
-            Y: =491
-            ZIndex: =11
-
-        Subcodetime As dropdown:
-            Height: =70
-            Items: =ClassSched.Title
-            Size: =21
-            Visible: =varSetExper
-            Width: =567
-            X: =36
-            Y: =284
-            ZIndex: =12
-
-        Instructor As dropdown:
-            Height: =70
-            Items: =InstructorQR.Title
-            Size: =21
-            Visible: =varSetExper
-            Width: =567
-            X: =36
-            Y: =421
-            ZIndex: =13
-
-        Button5 As button:
-            Height: =70
-            OnSelect: |-
-                =If(
-                    IsBlank(ExpNum.Text),
-                    Notify("Experiment Number field is required", NotificationType.Error),
-                    Patch(
-                        Notifications,
-                        Defaults(Notifications),
-                        {
-                            Title: Subcodetime.Selected.Title,
-                            Instructor: Instructor.Selected.Title,
-                            ExpNum: Value(ExpNum.Text),
-                            DateAdded: Now()
-                        }
-                    )
-                );
-                
-                
-                Reset(ExpNum);
-                Reset(Subcodetime);
-                Reset(Instructor);
-            Size: =24
-            Text: ="Send"
-            Visible: =varSetExper
-            Width: =280
-            X: =180
-            Y: =728
-            ZIndex: =14
-
-    Popup As group:
-        Height: =5
-        Width: =5
-        X: =60
-        Y: =60
-        ZIndex: =17
-
-        PdfViewer2 As pdfViewer:
-            BorderColor: =RGBA(0, 0, 0, 1)
-            Document: |-
-                =If(
-                    EndsWith(
-                        Expmanlist.Selected.'File name with extension',
-                        "pdf"
-                    ),
-                    Expmanlist.Selected.'Link to item',
-                    Substitute(
-                        Expmanlist.Selected.Thumbnail.Large,
-                        "/thumbnail",
-                        "/pdf"
-                    )
-                )
-            Fill: =RGBA(0, 0, 0, 0.5)
-            Height: =961
-            Visible: =varShowPopup
-            Y: =175
-            ZIndex: =15
-
-        Arrow1 As arrow.backArrow:
-            Fill: =RGBA(26, 26, 26, 1)
-            Height: =57
-            OnSelect: =Set(varShowPopup,false)
-            Visible: =varShowPopup
-            Width: =61
-            X: =22
-            Y: =189
-            ZIndex: =16
+    Button1_3 As button:
+        BorderThickness: =0
+        Color: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(255, 215, 0, 1)
+        Height: =140
+        OnSelect: =Navigate(HistoryofACT);
+        Size: =24
+        Text: |-
+            ="History of Activities
+            "
+        Width: =203
+        X: =117
+        Y: =802
+        ZIndex: =9
 

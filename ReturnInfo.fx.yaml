@@ -1,0 +1,35 @@
+ReturnInfo As screen:
+
+    Header_12 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =4
+
+        gold_14 As label:
+            Fill: =RGBA(255, 215, 0, 1)
+            Height: =70
+            Size: =21
+            Text: =""
+            Width: =640
+            ZIndex: =1
+
+        maroon_14 As label:
+            Fill: =RGBA(128, 0, 0, 1)
+            Height: =70
+            Size: =21
+            Text: =""
+            Width: =640
+            Y: =20
+            ZIndex: =2
+
+        Arrow1_17 As arrow.backArrow:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =45
+            OnSelect: =Navigate(Return);
+            Width: =45
+            X: =16
+            Y: =32
+            ZIndex: =3
+

@@ -1,0 +1,188 @@
+AddInventory As screen:
+
+    gold_1 As label:
+        Fill: =RGBA(255, 215, 0, 1)
+        Height: =70
+        Size: =21
+        Text: =""
+        Width: =640
+        ZIndex: =1
+
+    maroon_1 As label:
+        Fill: =RGBA(128, 0, 0, 1)
+        Height: =70
+        Size: =21
+        Text: =""
+        Width: =640
+        Y: =20
+        ZIndex: =2
+
+    Arrow1_4 As arrow.backArrow:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =45
+        OnSelect: =Navigate(InventoryL);
+        Width: =45
+        X: =16
+        Y: =32
+        ZIndex: =3
+
+    Label2_1 As label:
+        Height: =70
+        Size: =16
+        Text: |-
+            ="Quantity:"
+        Width: =110
+        X: =27
+        Y: =225
+        ZIndex: =6
+
+    Label2_2 As label:
+        Height: =70
+        Size: =16
+        Text: |-
+            ="Item:"
+        Width: =110
+        X: =27
+        Y: =122
+        ZIndex: =8
+
+    Item As text:
+        Default: =""
+        Height: =61
+        Size: =21
+        Width: =447
+        X: =137
+        Y: =122
+        ZIndex: =9
+
+    Label2_3 As label:
+        Height: =70
+        Size: =16
+        Text: |-
+            ="Barcode ID:"
+        Width: =110
+        X: =27
+        Y: =321
+        ZIndex: =10
+
+    BarcodeID As text:
+        Default: =varBarcodeScan
+        Height: =61
+        Size: =21
+        Width: =447
+        X: =137
+        Y: =330
+        ZIndex: =11
+
+    Button3 As button:
+        Height: =70
+        OnSelect: |-
+            =Patch('TDE Laboratory Inventory',Defaults('TDE Laboratory Inventory'), {Title: Item.Text, BarcodeID: BarcodeID.Text, QTY: Quantity.Selected.Value, NumberOnLoan:0, UOM: UOM.Text, 'YEAR PURCHASED': Value(YrPurchased.Text), 'UNIT COST': Value(UnitCost.Text), 'TOTAL COST': Value(UnitCost.Text) * Quantity.Selected.Value, DateAdded: Today()});
+            
+            Reset(BarcodeID);
+            Reset(Item);
+            Reset(Quantity);
+            Reset(YrPurchased);
+            Reset(UOM);
+            Reset(UnitCost);
+            Navigate(InventoryL);
+        Size: =24
+        Text: ="Add"
+        Width: =190
+        X: =225
+        Y: =1038
+        ZIndex: =12
+
+    Quantity As dropdown:
+        Height: =61
+        Items: |
+            =Sequence(100)
+        Size: =21
+        Width: =447
+        X: =137
+        Y: =225
+        ZIndex: =15
+
+    "BarcodeReader1 As 'Barcode Reader'":
+        BorderFillColor: =RGBA(47, 81, 151, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledContentColor: =RGBA(166, 166, 166, 1)
+        DisabledFillColor: =RGBA(244, 244, 244, 1)
+        DisplayMode: =DisplayMode.Edit
+        FillColor: =RGBA(56, 96, 178, 1)
+        FontSize: =11
+        Height: =45
+        HoverBorderColor: =RGBA(88, 115, 171, 1)
+        HoverContentColor: =RGBA(255, 255, 255, 1)
+        HoverFillColor: =RGBA(47, 81, 151, 1)
+        OnCancel: =false
+        OnScan: =Set(varBarcodeScan, First(Self.Barcodes).Value);
+        PressedBorderColor: =RGBA(56, 96, 178, 1)
+        PressedContentColor: =RGBA(56, 96, 178, 1)
+        PressedFillColor: =RGBA(255, 255, 255, 1)
+        Text: ="Scan"
+        TextColor: =RGBA(255, 255, 255, 1)
+        Width: =62
+        X: =137
+        Y: =404
+        ZIndex: =16
+
+    YrPurchased As text:
+        Default: =""
+        Height: =61
+        Size: =21
+        Width: =423
+        X: =160
+        Y: =482
+        ZIndex: =17
+
+    Label2_11 As label:
+        Height: =70
+        Size: =16
+        Text: |-
+            ="Year Purchased:"
+        Width: =133
+        X: =27
+        Y: =477
+        ZIndex: =18
+
+    UOM As text:
+        Default: =""
+        Height: =61
+        Size: =21
+        Width: =424
+        X: =160
+        Y: =562
+        ZIndex: =19
+
+    Label2_12 As label:
+        Height: =70
+        Size: =16
+        Text: |-
+            ="UOM:
+            "
+        Width: =110
+        X: =27
+        Y: =557
+        ZIndex: =20
+
+    UnitCost As text:
+        Default: =""
+        Format: =TextFormat.Number
+        Height: =61
+        Size: =21
+        Width: =424
+        X: =160
+        Y: =636
+        ZIndex: =21
+
+    Label2_13 As label:
+        Height: =70
+        Size: =16
+        Text: |-
+            ="Unit Cost:"
+        Width: =110
+        X: =27
+        Y: =631
+        ZIndex: =22
+

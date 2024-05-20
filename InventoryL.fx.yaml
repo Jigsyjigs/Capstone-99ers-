@@ -1,0 +1,161 @@
+InventoryL As screen:
+
+    "Gallery2 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+        '#CopilotOverlayLabel': ="Filtered"
+        DelayItemLoading: =true
+        DisplayMode: =
+        Height: =1046
+        Items: |-
+            =Sort(
+                Filter(
+                    'TDE Laboratory Inventory',
+                    StartsWith(Title, txtSearch.Text) // Filter by Title based on the search term
+                ),
+                DateAdded,
+                SortOrder.Descending // Sort the filtered items by DateAdded in descending order
+            )
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =0
+        TemplateSize: =104
+        Y: =90
+        ZIndex: =4
+
+        Title2 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Title
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 173
+            X: =23
+            Y: =15
+            ZIndex: =2
+
+        Subtitle2 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: |-
+                ="Quantity: " & ThisItem.QTY
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Title2.Width
+            X: =Title2.X
+            Y: =Title2.Y + Title2.Height
+            ZIndex: =3
+
+        NextArrow2 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Height: =70
+            Icon: =Icon.Document
+            OnSelect: =Set(varItem,ThisItem);Navigate(ItemInfo);
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="View item details"
+            Width: =70
+            X: =Parent.TemplateWidth - Self.Width - 12
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =4
+
+        Separator2 As rectangle:
+            Height: =8
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - Self.Height
+            ZIndex: =5
+
+        Rectangle2 As rectangle:
+            Height: =Parent.TemplateHeight - Separator2.Height
+            OnSelect: =Select(Parent)
+            Visible: =ThisItem.IsSelected
+            Width: =4
+            ZIndex: =6
+
+        Title2_1 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: |-
+                ="Unit Cost: ₱" & ThisItem.'UNIT COST'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 173
+            X: =23
+            Y: =61
+            ZIndex: =7
+
+    Icon1 As icon.Add:
+        Color: =RGBA(187, 221, 140, 1)
+        DisabledColor: =RGBA(0, 0, 0, 0)
+        Height: =70
+        Icon: =Icon.Devices
+        OnSelect: =Navigate(AddInventory)
+        Width: =66
+        X: =546
+        Y: =20
+        ZIndex: =6
+
+    txtSearch As text:
+        Default: =""
+        Height: =51
+        Size: =21
+        Width: =344
+        X: =190
+        Y: =29
+        ZIndex: =8
+
+    Header As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =8
+
+        gold As label:
+            Fill: =RGBA(255, 215, 0, 1)
+            Height: =70
+            Size: =21
+            Text: =""
+            Width: =640
+            ZIndex: =1
+
+        maroon As label:
+            Fill: =RGBA(128, 0, 0, 1)
+            Height: =70
+            Size: =21
+            Text: =""
+            Width: =640
+            Y: =20
+            ZIndex: =2
+
+        Arrow1_3 As arrow.backArrow:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =45
+            OnSelect: =Navigate(Home); Reset(txtSearch);
+            Width: =45
+            X: =16
+            Y: =32
+            ZIndex: =3
+
+    Icon6 As icon.Search:
+        Color: =RGBA(141, 198, 63, 1)
+        Height: =44
+        Icon: =Icon.Search
+        Width: =44
+        X: =146
+        Y: =32
+        ZIndex: =9
+
